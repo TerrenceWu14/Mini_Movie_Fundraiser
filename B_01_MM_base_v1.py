@@ -1,16 +1,4 @@
-# main routine starts here
-
-# Checks whether the user entered yes or no
-def yes_no(question):
-    while True:
-        response = input(question).lower()
-        if response == "yes" or response == "y":
-            return "yes"
-        elif response == "no" or response == "n":
-            return "no"
-        else:
-            print("you didn't choose a valid option (yes/no)")
-
+# functions
 
 # checks that user response is not blank
 def not_blank(question):
@@ -41,11 +29,49 @@ def num_check(question):
             print(error)
 
 
+# calculate the ticket price based on the age
+def calc_ticket_price(var_age):
+    # ticket is $7.50 for users under 16
+    if var_age < 16:
+        price = 7.5
+
+    # ticket is $10.50 for users between 16 and 64
+    elif var_age < 65:
+        price = 10.5
+
+    # ticket price is $6.5 for seniors (65+)
+    else:
+        price = 6.5
+
+    return price
+
+
+# checks that users enter a valid response (e.g. yes / no
+# cash / credit) based on a list of options
+def string_checker(question, num_letters, valid_responses):
+    while True:
+
+        response = input(question).lower()
+
+        for item in valid_responses:
+            if response == item[0] or response == item:
+                return item
+
+        print("Please enter a valid response")
+
+
+# main routine goes here
+
 # sets maximum number of tickets below
 max_tickets = 3
 tickets_sold = 0
 
-want_instruction = yes_no("Do you want to read the instructions? ")
+yes_no_list = ["yes", "no"]
+payment_list = ["cash", "credit"]
+
+want_instruction = string_checker("Do you want to read the "
+                                  "instructions (y/n)? "
+                                  , 1, yes_no_list)
 
 if want_instruction == "yes":
     print("Instructions go here")
@@ -71,6 +97,14 @@ while tickets_sold < max_tickets:
     else:
         print("?? That looks like a typo, please try again")
         continue
+
+    # calculate the tickets cost
+    ticket_cost = calc_ticket_price(age)
+
+    # gets payment method
+    pay_method = string_checker("Choose a payment method "
+                                "(cash / credit): ",
+                                2, payment_list)
 
     tickets_sold += 1
 
