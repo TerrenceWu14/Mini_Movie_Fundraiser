@@ -12,6 +12,35 @@ def yes_no(question):
             print("you didn't choose a valid option (yes/no)")
 
 
+# checks that user response is not blank
+def not_blank(question):
+    while True:
+        response = input(question)
+
+        # if the response is blank, outputs the error
+        if response == "":
+            print("Sorry this can't be blank. Please try again")
+
+        else:
+            return response
+
+
+# Checks that the user has entered an integer
+def num_check(question):
+    error = "Please choose an integer"
+
+    # Checks that a number is higher or equal to 13
+    while True:
+        try:
+            response = int(input(question))
+            if response < 0:
+                print(error)
+            else:
+                return response
+        except ValueError:
+            print(error)
+
+
 # sets maximum number of tickets below
 max_tickets = 3
 tickets_sold = 0
@@ -23,12 +52,25 @@ if want_instruction == "yes":
 
 print()
 
-# loops to sell all tickets
 while tickets_sold < max_tickets:
+
     name = input("Please enter your name or 'xxx' to quit: ")
 
     if name == 'xxx':
         break
+
+    age = num_check("Age: ")
+
+    if 12 <= age <= 120:
+        pass
+
+    elif age < 12:
+        print("You are too young! You can't watch this movie")
+        continue
+
+    else:
+        print("?? That looks like a typo, please try again")
+        continue
 
     tickets_sold += 1
 
