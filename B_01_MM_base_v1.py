@@ -73,38 +73,47 @@ def string_checker(question, num_letters, valid_responses):
 
 # main routine goes here
 
-# sets maximum number of tickets below
+# initializes variables
 max_tickets = 3
 tickets_sold = 0
 
 yes_no_list = ["yes", "no"]
 payment_list = ["cash", "credit"]
 
+# asks the user if they want to see the instructions
 want_instruction = string_checker("Do you want to read the "
                                   "instructions (y/n)? "
                                   , 1, yes_no_list)
 
+# if they wanted to view the instructions it displays itself
 if want_instruction == "yes":
     print("Instructions go here")
 
 print()
 
+# loops as long as tickets sold is less than max tickets
 while tickets_sold < max_tickets:
 
+    # asks for the users name
     name = input("Please enter your name or 'xxx' to quit: ")
 
+    # exits if the users wants to quit
     if name == 'xxx':
         break
 
+    # asks for the users age
     age = num_check("Age: ")
 
+    # passes if they are within this accepted range
     if 12 <= age <= 120:
         pass
 
+    # sends back to the top of the while loops, user is too young
     elif age < 12:
         print("You are too young! You can't watch this movie")
         continue
 
+    # sends back to the top of the while loops, user may be faking their age
     else:
         print("?? That looks like a typo, please try again")
         continue
