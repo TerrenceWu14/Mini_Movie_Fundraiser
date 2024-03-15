@@ -49,20 +49,14 @@ def calc_ticket_price(var_age):
 # checks that users enter a valid response (e.g. yes / no
 # cash / credit) based on a list of options
 def string_checker(question, num_letters, valid_responses):
-
     error = f"Please choose from {valid_responses[0]} or {valid_responses[1]}"
-
-    if num_letters == 1:
-        short_version = 1
-    else:
-        short_version = 2
 
     while True:
 
         response = input(question).lower()
 
         for item in valid_responses:
-            if response == item[:short_version] or response == item:
+            if response == item[:num_letters] or response == item:
                 return item
             elif response == "c":
                 item = input("Cash or credit? ")
