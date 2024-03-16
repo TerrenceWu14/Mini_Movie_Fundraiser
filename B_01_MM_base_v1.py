@@ -225,8 +225,11 @@ ticket_cost_heading = "\n----- Ticket Cost / Profit -----"
 total_ticket_sales = f"Total Ticket Sales ${total:.2f}"
 total_profit = f"Total Profit: ${profit:.2f}"
 
-# edit text below!! It needs to work if we have unsold tickets
-sales_status = f"\n*** {tickets_sold} out of {max_tickets} sold ***"
+# edit text below!! It needs to work if we have unsold ticket
+if tickets_sold == max_tickets:
+    sales_status = "\n*** All tickets have been sold ***"
+else:
+    sales_status = f"\n*** {tickets_sold} out of {max_tickets} sold ***"
 
 winner_heading = "\n----- Raffle Winner -----"
 winner_text = (f"Congratulations to {winner_name}. You have won ${total_won:.2f} ie: "
