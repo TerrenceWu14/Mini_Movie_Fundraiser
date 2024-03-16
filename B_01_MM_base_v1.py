@@ -170,11 +170,13 @@ while tickets_sold < max_tickets:
 
     if pay_method == "cash":
         surcharge = 0
+    # adds a surcharge of 5% if its credit
     else:
         surcharge = ticket_cost * 0.05
 
     tickets_sold += 1
 
+    # adds the name, ticket cost and surcharge into a list
     all_names.append(name)
     all_ticket_costs.append(ticket_cost)
     all_surcharge.append(surcharge)
@@ -225,12 +227,13 @@ ticket_cost_heading = "\n----- Ticket Cost / Profit -----"
 total_ticket_sales = f"Total Ticket Sales ${total:.2f}"
 total_profit = f"Total Profit: ${profit:.2f}"
 
-# edit text below!! It needs to work if we have unsold ticket
+# shows user how many tickets have been sold
 if tickets_sold == max_tickets:
     sales_status = "\n*** All tickets have been sold ***"
 else:
     sales_status = f"\n*** {tickets_sold} out of {max_tickets} sold ***"
 
+# outputs the raffle results
 winner_heading = "\n----- Raffle Winner -----"
 winner_text = (f"Congratulations to {winner_name}. You have won ${total_won:.2f} ie: "
                f"your ticket is free!")
